@@ -15,6 +15,10 @@ export default function Question(){
          .then(res => res.json())
          .then(data => setData(data.results))
     },[])
+    function random(incorrect){
+        const random = Math.floor(Math.random() * incorrect.length)
+        return random
+    }
     function getRandomQuestions(){
             setQuestion(prevQuestion => {
                 const selectedQuestion = data[Math.floor(Math.random() * 5)]
@@ -23,7 +27,7 @@ export default function Question(){
                 function answerssFunction() {
                     for(let i=0; i<question.incorrectAnswers.length ; i++){
                         if(!question.incorrectAnswers.includes(question.correctAnswer)){
-                            question.incorrectAnswers.splice(random, 0, question.correctAnswer)
+                            question.incorrectAnswers.splice(random(question.incorrectAnswers), 0, question.correctAnswer)
                         }else{
                             return question.incorrectAnswers
                         }
