@@ -1,5 +1,7 @@
 import React from "react"
 import Question1 from "./Question1"
+import "./styles.css"
+
 export default function App1(){
     const [allQuestions, setAllQuestions] = React.useState([])
     const [apiCall, setApiCall] = React.useState(false)
@@ -16,28 +18,27 @@ export default function App1(){
     function newQuestions(){
         setApiCall(prevApiCall => !prevApiCall)     
     }
-    // const arr = ["kfe","ekffek"]
-    // const t = "tea"
-    // const random = Math.floor(Math.random() * arr.length)
-    //  arr.splice(1, 0, t)
-    // const fruits = ["Banana", "Orange", "Apple", "Mango"]
-    // const kiwi= "kiwi"
-    // fruits.splice(2, 0, kiwi)
-    // console.log("neww:"+arr)
-    const questions = allQuestions.map(quest => {
-        const answers = quest.incorrect_answers
+
+    function answersFunction(){
+        const answers =[]
+        allQuestions.map(quest => {
+        answers = quest.incorrect_answers
         const random = Math.floor(Math.random() * answers.length)
         const correct = quest.correct_answer
-        answers.splice(random, 0 , correct)
-    
+        answers.splice(random, 0 , correct)})
+        return answers
+    }
+
+    const questions = allQuestions.map(quest => {
+        
+
         return(
             <Question1 
                 question = {quest.question}
-                answers = {answers}
+                answers = {quest.correct_answer}
             />
         )
-    })
-    
+        })
     console.log(allQuestions)
     return(
         <div>
