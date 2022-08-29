@@ -18,24 +18,32 @@ export default function App1(){
     function newQuestions(){
         setApiCall(prevApiCall => !prevApiCall)     
     }
-
     function answersFunction(){
-        const answers =[]
+        let answers =[]
         allQuestions.map(quest => {
         answers = quest.incorrect_answers
         const random = Math.floor(Math.random() * answers.length)
         const correct = quest.correct_answer
         answers.splice(random, 0 , correct)})
-        return answers
+         return answers
     }
-
+   
+    const allAnswers = answersFunction()
+    function getAnswers(){
+        allAnswers.map(answer => {          
+            return(
+                answer
+            )
+        })
+    }
+    const answ = getAnswers()
     const questions = allQuestions.map(quest => {
-        
+
 
         return(
             <Question1 
                 question = {quest.question}
-                answers = {quest.correct_answer}
+                answers = {answ}
             />
         )
         })
